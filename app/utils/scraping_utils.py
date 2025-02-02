@@ -52,7 +52,7 @@ class BookwalkerScraping:
         if not url.endswith("/"):
             url += "/"
 
-        is_valid_domain = re.match(r"https://bookwalker.jp/campaign/[0-9]+/$", url)
+        is_valid_domain = re.match(r"https://bookwalker.jp/.+?/[0-9]+/$", url)
         if not is_valid_domain:
             logger.error(f"Invalid URL: {url}")
             return False
@@ -140,7 +140,7 @@ class BookwalkerScraping:
         periods = []
 
         for i in range(1, page + 1):
-            response = cls.get_page(f"{url}?page={i}")
+            response = cls.get_page(f"{url}&page={i}")
             if response is None:
                 return None
 
@@ -148,7 +148,7 @@ class BookwalkerScraping:
             campaign_title_tag = soup.find("h2", class_="o-contents-section__title")
             if campaign_title_tag is None:
                 return None
-            campaign_title = campaign_title_tag.get("text", "")
+            campaign_title = campaign_title_tag.text
             campaign_item_cards = soup.find_all("li", class_="m-list-card")
             for campaign_item_card in campaign_item_cards:
                 if not isinstance(campaign_item_card, Tag):
@@ -167,17 +167,34 @@ class BookwalkerScraping:
                     for author in item_author_elements
                     if isinstance(author, Tag)
                 ]
-                company_element = campaign_item_card.find(
-                    "a", attrs={"data-action-label", "出版社名"}
+                item_company_element = campaign_item_card.find(
+                    "div", class_="a-card-publisher"
                 )
                 item_company = (
-                    company_element.text if isinstance(company_element, Tag) else ""
+                    item_company_element.find("a").text
+                    if isinstance(item_company_element, Tag)
+                    else ""
                 )
-                price = int(
+                item_company = item_company.strip() if item_company else ""
+                item_url_element = campaign_item_card.find("h2", class_="o-card-ttl")
+                item_url = (
+                    item_url_element.find("a").get("href") if item_url_element else ""
+                )
+
+                item_price = int(
                     campaign_item_card.find(
                         "span", class_="m-book-item__price-num"
-                    ).get("text", 0)
+                    ).text.replace(",", "")
                 )
+                item_label_element = campaign_item_card.find(
+                    "div", class_="a-card-book-label"
+                )
+                item_label = (
+                    item_label_element.find("a").text
+                    if isinstance(item_label_element, Tag)
+                    else ""
+                )
+                item_label = item_label.strip() if item_label else ""
                 period_wrap = campaign_item_card.find("span", class_="a-card-period")
                 if period_wrap is not None:
                     period_text = period_wrap.text
@@ -194,12 +211,17 @@ class BookwalkerScraping:
                     continue
                 bookwalker_item = BookwalkerItemSchema(
                     title=item_title,
-                    url=response.url,
+                    url=item_url,
                     author=item_authors,
                     company=item_company,
-                    price=price,
+                    label=item_label,
+                    price=item_price,
                 )
                 campaign_items.append(bookwalker_item)
+
+        if len(campaign_items) == 0:
+            print("No items found.")
+            return None
 
         if len(periods) > 0:
             period = min(periods)
