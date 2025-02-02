@@ -21,4 +21,5 @@
 - `poetry install`
 - `poetry shell`
 - `python make_kindle_link.py <bookwalkerのセールのページのURL>`
-コンソールに短縮URLが出力される
+
+実行後、コンソールに短縮URLが出力される
