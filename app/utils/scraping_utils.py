@@ -52,7 +52,7 @@ class BookwalkerScraping:
         if not url.endswith("/"):
             url += "/"
 
-        is_valid_domain = re.match(r"https://bookwalker.jp/.+?/[0-9]+/$", url)
+        is_valid_domain = re.match(r"https://bookwalker.jp/.+?/[0-9]+/.*$", url)
         if not is_valid_domain:
             logger.error(f"Invalid URL: {url}")
             return False

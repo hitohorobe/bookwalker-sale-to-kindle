@@ -31,15 +31,14 @@ def make_url_list(asin_list: list) -> list:
     """
     asin 120件ごとに検索結果URLをつくり、URLのリストを返す
     """
-    base_url = "https://www.amazon.co.jp/s?i=digital-text&hidden-keywords="
+    amazon_tag = os.environ["AMAZON_TAG"]
+    base_url = (
+        f"https://www.amazon.co.jp/s?i=digital-text&tag={amazon_tag}&hidden-keywords="
+    )
     url_list = []
     for i, asin in enumerate(asin_list):
         if asin:
             if i % 120 == 0:
-                # 末尾にアソシエイトタグを付与する
-                amazon_tag = os.environ["AMAZON_TAG"]
-                tag = f"&tag={amazon_tag}"
-                base_url += tag
                 url_list.append(base_url)
             url_list[-1] += asin + "|"
     return url_list
