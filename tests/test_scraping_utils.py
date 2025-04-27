@@ -5,7 +5,10 @@ def test_is_valid_url():
     valid_url = "https://bookwalker.jp/campaign/39129/"
     assert BookwalkerScraping.is_valid_url(valid_url) == True
 
-    invalid_url = "https://bookwalker.jp/select/3443/"
+    valid_url2 = "https://bookwalker.jp/select/3443/"
+    assert BookwalkerScraping.is_valid_url(valid_url2) == True
+
+    invalid_url = "https://example.com/campaign/39129/"
     assert BookwalkerScraping.is_valid_url(invalid_url) == False
 
 
@@ -18,22 +21,22 @@ def test_regularize_url():
 
 
 def test_get_page():
-    url = "https://bookwalker.jp/campaign/39129/"
+    url = "https://bookwalker.jp/campaign/40852"
     response = BookwalkerScraping.get_page(url)
     assert response.status_code == 200
 
 
 def test_get_page_length():
-    single_page_url = "https://bookwalker.jp/campaign/39129/"
+    single_page_url = "https://bookwalker.jp/campaign/40850"
     response = BookwalkerScraping.get_page(single_page_url)
     assert BookwalkerScraping.get_page_length(response) == 1
 
-    multi_page_url = "https://bookwalker.jp/campaign/39123/"
+    multi_page_url = "https://bookwalker.jp/campaign/40852"
     response = BookwalkerScraping.get_page(multi_page_url)
     assert BookwalkerScraping.get_page_length(response) == 2
 
 
 def test_get_campaign_items():
-    campaign_url = "https://bookwalker.jp/campaign/39129/"
+    campaign_url = "https://bookwalker.jp/campaign/40852/"
     items = BookwalkerScraping.get_campaign_items(campaign_url)
     assert items is not None
