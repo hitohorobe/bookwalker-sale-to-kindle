@@ -145,7 +145,7 @@ class BookwalkerScraping:
                 return None
 
             soup = BeautifulSoup(response.text, "html.parser")
-            campaign_title_tag = soup.find("h2", class_="o-contents-section__title")
+            campaign_title_tag = soup.find("h1", class_="o-contents-section__title")
             if campaign_title_tag is None:
                 return None
             campaign_title = campaign_title_tag.text
@@ -207,8 +207,8 @@ class BookwalkerScraping:
                         periods.append(period)
 
                 # 商品名に含まれていたら無視するキーワードがあればスキップ
-                if any(keyword in item_title for keyword in IGNORE_KEYWORDS):
-                    continue
+                # if any(keyword in item_title for keyword in IGNORE_KEYWORDS):
+                #    continue
                 bookwalker_item = BookwalkerItemSchema(
                     title=item_title,
                     url=item_url,
