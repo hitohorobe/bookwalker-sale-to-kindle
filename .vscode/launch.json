@@ -5,12 +5,13 @@
             "name": "Python デバッガー: 現在のファイル",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/make_kindle_link.py",
             "console": "integratedTerminal",
             "args": [
                 // ここにbookwalkerのURLを入れて動作確認する
-                "https://bookwalker.jp/tag/9927/"
-            ]
+                "https://bookwalker.jp/campaign/40852"
+            ],
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "name": "Python デバッガー: 現在のファイル",
