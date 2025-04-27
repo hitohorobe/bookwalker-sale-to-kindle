@@ -1,3 +1,4 @@
+import re
 import argparse
 import time
 from dotenv import load_dotenv
@@ -39,9 +40,10 @@ def main():
     items = campaign.items
     for item in items:
         # 商品情報を出力する
-        # print(item)
+        # item.title のうち【】で囲まれた部分を削除する
         # 商品情報をAmazonで検索する。検索は商品名+レーベル+出版社名で行う
-        keywords = f"{item.title} {item.company}"
+        title = re.sub(r"【.*?】", "", item.title)
+        keywords = f"{title} {item.company}"
         try:
             if item.label:
                 keywords += f" {item.label}"

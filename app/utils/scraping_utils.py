@@ -19,7 +19,7 @@ BOOKWALKER_CAMPAIGN_URL = "https://bookwalker.jp/campaign/"
 TIMEOUT = 10
 
 # 商品名に含まれていたら無視するキーワード一覧
-IGNORE_KEYWORDS = ["分冊版", "試し読み", "無料", "お試し", "期間限定"]
+IGNORE_KEYWORDS = ["分冊版"]
 
 logger = getLogger(__name__)
 
@@ -207,8 +207,8 @@ class BookwalkerScraping:
                         periods.append(period)
 
                 # 商品名に含まれていたら無視するキーワードがあればスキップ
-                # if any(keyword in item_title for keyword in IGNORE_KEYWORDS):
-                #    continue
+                if any(keyword in item_title for keyword in IGNORE_KEYWORDS):
+                   continue
                 bookwalker_item = BookwalkerItemSchema(
                     title=item_title,
                     url=item_url,
