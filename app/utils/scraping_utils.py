@@ -5,14 +5,13 @@ from logging import getLogger
 from typing import Optional
 
 import requests
+from bs4 import BeautifulSoup, Tag, element
 from requests import Response
-from bs4 import BeautifulSoup, element, Tag
 
 from app.schemas.bookwalker_schemas import (
-    BookwalkerItemSchema,
     BookwalkerCampaignSchema,
+    BookwalkerItemSchema,
 )
-
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 BOOKWALKER_CAMPAIGN_URL = "https://bookwalker.jp/campaign/"

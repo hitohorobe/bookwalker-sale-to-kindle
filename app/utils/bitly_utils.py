@@ -1,6 +1,6 @@
 import os
-import requests
 
+import requests
 
 BITLY_API_URL = "https://api-ssl.bitly.com/v4/shorten"
 BITLY_TOKEN = os.environ["BITLY_API_TOKEN"]
