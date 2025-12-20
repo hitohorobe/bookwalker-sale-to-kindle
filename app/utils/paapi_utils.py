@@ -1,7 +1,8 @@
-import os
 import json
-from dotenv import load_dotenv
+import os
+
 from amazon_paapi import AmazonApi
+from dotenv import load_dotenv
 
 load_dotenv()
 

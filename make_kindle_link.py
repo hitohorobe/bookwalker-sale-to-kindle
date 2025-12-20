@@ -1,11 +1,12 @@
-import re
 import argparse
+import re
 import time
-from dotenv import load_dotenv
-from app.utils.scraping_utils import BookwalkerScraping
-from app.utils.paapi_utils import AmazonPaapi
-from app.utils.bitly_utils import shorten_url, make_url_list
 
+from dotenv import load_dotenv
+
+from app.utils.bitly_utils import make_url_list, shorten_url
+from app.utils.paapi_utils import AmazonPaapi
+from app.utils.scraping_utils import BookwalkerScraping
 
 load_dotenv()
 
