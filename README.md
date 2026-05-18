@@ -18,8 +18,7 @@
 ### CLIツール
 - `cp .env.example .env`
 - `.env`ファイルに環境変数を貼り付け
-- `poetry install`
-- `poetry shell`
-- `python make_kindle_link.py <bookwalkerのセールのページのURL>`
+- `uv sync --all-groups`
+- `uv run python make_kindle_link.py <bookwalkerのセールのページのURL>`
 
 実行後、コンソールに短縮URLが出力される
