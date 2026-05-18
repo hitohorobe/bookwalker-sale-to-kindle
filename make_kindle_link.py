@@ -5,14 +5,14 @@ import time
 from dotenv import load_dotenv
 
 from app.utils.bitly_utils import make_url_list, shorten_url
-from app.utils.paapi_utils import AmazonPaapi
+from app.utils.creator_api_utils import AmazonApiUtils
 from app.utils.scraping_utils import BookwalkerScraping
 
 load_dotenv()
 
 
 def main():
-    amazon = AmazonPaapi()
+    amazon = AmazonApiUtils()
 
     parser = argparse.ArgumentParser(
         description="Get Kindle link from Bookwalker campaign URL"
@@ -50,8 +50,8 @@ def main():
                 keywords += f" {item.label}"
             response = amazon.search_items(keywords=keywords)
             # asinをリストに追加する
-            asins.append(response["_items"][0].asin)
-            print(item.title + " を取得... asin:" + response["_items"][0].asin)
+            asins.append(response["items"][0].asin)
+            print(item.title + " を取得... asin:" + response["items"][0].asin)
         except Exception as e:
             print(f"Error: {e}")
         # 1秒待機する
