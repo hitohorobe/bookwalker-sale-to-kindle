@@ -10,13 +10,14 @@
 ### 準備
 以下のものを事前に取得しておく
 - Amazon アソシエイトのアソシエイトタグ(例: hito-horobe-22)
-- Amazon PAAPI のアクセスキー
-- Amazon PAAPI のシークレット
+- Amazon Creators API のアクセスキー
+- Amazon Creators API のシークレット
+- Amazon Creators API のバージョン
 - Amazon の国別コード（例：JP）
 - bit.lyのアクセストークン
 
 ### CLIツール
-- `cp .env.example .env`
+- `cp .env.sample .env`
 - `.env`ファイルに環境変数を貼り付け
 - `uv sync --all-groups`
 - `uv run python make_kindle_link.py <bookwalkerのセールのページのURL>`
