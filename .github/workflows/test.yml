@@ -1,0 +1,34 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    env:
+      AMAZON_CREATOR_API_ID: dummy
+      AMAZON_CREATOR_API_SECRET: dummy
+      AMAZON_CREATOR_API_VERSION: dummy
+      AMAZON_TAG: dummy
+      AMAZON_COUNTRY: JP
+      BITLY_API_TOKEN: dummy
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Install dependencies
+        run: uv sync --locked --all-groups
+
+      - name: Run pytest
+        run: uv run pytest
