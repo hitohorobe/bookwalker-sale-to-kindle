@@ -510,7 +510,7 @@ wheels = [
 
 [[package]]
 name = "python-amazon-paapi"
-version = "6.2.0"
+version = "6.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
@@ -520,9 +520,9 @@ dependencies = [
     { name = "six" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1c/05/453ba8fc8692bb5d0450acaa4d3e804544619b561871c132cff9a72a38f8/python_amazon_paapi-6.2.0.tar.gz", hash = "sha256:a21f7f94d6ec586d9ac4e61f6a60778b495c9857f7ce3aae66ba4b54041cf880", size = 230694, upload-time = "2026-03-12T21:46:19.564Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f3/bf/b1d24c88304c6e3bad3d44585e42b95a5f53a915d8eb95dc270ce0457e30/python_amazon_paapi-6.3.0.tar.gz", hash = "sha256:e525d69efcbe4f9566ec2b9b43fa3183c484d166d3852edb38b4df9c0b19cf1f", size = 231222, upload-time = "2026-05-18T20:43:20.425Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f9/75/ebcd24bf68005f415a3848f885859e25b8d583b8c0eac9573acf09c18664/python_amazon_paapi-6.2.0-py3-none-any.whl", hash = "sha256:b27deb173431cad353323c826f147aecd6e0054d67a54fee19421584bdcf7435", size = 425038, upload-time = "2026-03-12T21:46:18.263Z" },
+    { url = "https://files.pythonhosted.org/packages/3e/39/3a741264d8bfc7978250ed9b206bbbac42d6dc3206208dc45849ed3a97c8/python_amazon_paapi-6.3.0-py3-none-any.whl", hash = "sha256:b7cd852084a49d53c3ba2195531fccbc8c7f4124b2e82e2fda02b53d3b8de521", size = 425189, upload-time = "2026-05-18T20:43:18.34Z" },
 ]
 
 [[package]]
